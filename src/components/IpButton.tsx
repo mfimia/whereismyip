@@ -4,18 +4,18 @@ import Collapse from "react-bootstrap/Collapse";
 import IpMessage from "./IpMessage";
 
 export interface DataProps {
-  ip: string;
-  as: { domain: string; type: string };
-  isp: string;
-  location: {
-    country: string;
-    region: string;
-    timezone: string;
+  readonly ip: string;
+  readonly as: { readonly domain: string; readonly type: string };
+  readonly isp: string;
+  readonly location: {
+    readonly country: string;
+    readonly region: string;
+    readonly timezone: string;
   };
 }
 
-const IpButton = () => {
-  const [open, setOpen] = useState(false);
+const IpButton: React.FC = () => {
+  const [open, setOpen] = useState<boolean>(false);
   const [ipData, setIpData] = useState<DataProps>({
     ip: "",
     as: {
@@ -30,13 +30,13 @@ const IpButton = () => {
     },
   });
 
-  const handleClick = () => setOpen((prev) => !prev);
+  const handleClick = () => setOpen((prev): boolean => !prev);
 
-  const getIp = async () => {
-    const res = await fetch(
+  const getIp = async (): Promise<void> => {
+    const res: Response = await fetch(
       `https://geo.ipify.org/api/v2/country?apiKey=${process.env.REACT_APP_API_KEY}`
     );
-    const data = await res.json();
+    const data: any = await res.json();
     setIpData(data);
   };
 
