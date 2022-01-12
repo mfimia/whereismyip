@@ -1,17 +1,7 @@
 import Card from "react-bootstrap/Card";
+import { DataProps } from "./IpButton";
 
-interface Props {
-  ip: string;
-  as: { domain: string; type: string };
-  isp: string;
-  location: {
-    country: string;
-    region: string;
-    timezone: string;
-  };
-}
-
-const IpMessage: React.FC<Props> = ({ ...ipData }) => {
+const IpMessage: React.FC<DataProps> = ({ ...ipData }) => {
   const { ip, isp, location, as } = ipData;
   const { country, region, timezone } = location;
   const { domain, type } = as;
