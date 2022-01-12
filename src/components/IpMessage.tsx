@@ -12,7 +12,6 @@ interface Props {
 }
 
 const IpMessage: React.FC<Props> = ({ ...ipData }) => {
-  console.log(ipData);
   const { ip, isp, location, as } = ipData;
   const { country, region, timezone } = location;
   const { domain, type } = as;
